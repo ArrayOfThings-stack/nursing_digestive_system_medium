@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digestive System — Essentials Practice Quiz</title>
+<style>
+:root {
+  --bg:#0b1016;
+  --panel:#141b24;
+  --panel-2:#1b2530;
+  --border:#26313d;
+  --text:#e6edf3;
+  --muted:#93a3b3;
+  --accent:#4dd0c1;
+  --correct:#3fb950;
+  --wrong:#f85149;
+  --hint:#f2c14e}
+
+  * {
+  box-sizing:border-box}
+
+html,body {
+  margin:0;
+  padding:0}
+
+  body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased}
+
+  .topbar {
+  position:sticky;
+  top:0;
+  z-index:30;
+  display:flex;
+  align-items:center;
+  gap:16px;
+  flex-wrap:wrap;
+  padding:12px 20px;
+  background:rgba(11,16,22,.94);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border)}
+
+  .brand {
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--accent);
+  white-space:nowrap;
+  font-size:15px}
+
+.brand span {
+  color:var(--muted);
+  font-weight:500}
+
+  .progress-wrap {
+  flex:1 1 160px;
+  min-width:120px;
+  height:8px;
+  background:var(--panel-2);
+  border-radius:99px;
+  overflow:hidden}
+
+.progress-bar {
+  height:100%;
+  width:0%;
+  border-radius:99px;
+  background:linear-gradient(90deg,#2f9e8f,var(--accent));
+  transition:width .25s ease}
+
+  .counter {
+  font-size:13px;
+  color:var(--muted);
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums}
+
+  main {
+  max-width:900px;
+  margin:0 auto;
+  padding:26px 18px 90px}
+
+  .intro {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px 20px;
+  margin-bottom:22px}
+
+.intro h1 {
+  margin:0 0 6px;
+  font-size:20px;
+  letter-spacing:.01em}
+
+.intro p {
+  margin:0;
+  color:var(--muted);
+  font-size:14px}
+
+.intro p+p {
+  margin-top:6px}
+
+  .mode-chooser {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:16px}
+
+.mode-status {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:16px;
+  font-size:14px;
+  color:var(--muted)}
+
+  .link-btn {
+  background:none;
+  border:none;
+  color:var(--accent);
+  font-family:inherit;
+  font-size:14px;
+  cursor:pointer;
+  padding:0;
+  text-decoration:underline;
+  text-underline-offset:3px}
+
+.link-btn:hover {
+  filter:brightness(1.25)}
+
+  .score-panel {
+  background:linear-gradient(160deg,#132a2a,#141b24 60%);
+  border:1px solid #2b4a45;
+  border-radius:16px;
+  padding:22px;
+  margin-bottom:22px;
+  text-align:center;
+  animation:pop .35s ease}
+
+  @keyframes pop {
+  from {
+  transform:scale(.97);
+  opacity:0}
+
+to {
+  transform:scale(1);
+  opacity:1}
+
+}
+
+.score-panel .big {
+  font-size:44px;
+  font-weight:800;
+  color:var(--accent);
+  line-height:1.1;
+  font-variant-numeric:tabular-nums}
+
+.score-panel .pct {
+  font-size:15px;
+  color:var(--muted);
+  margin-top:2px}
+
+.score-panel .msg {
+  margin-top:12px;
+  font-size:15px}
+
+.score-panel .sub {
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted)}
+
+.score-actions {
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:16px}
+
+  .q-card {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:18px 18px 14px;
+  margin-bottom:16px;
+  transition:border-color .2s ease,box-shadow .2s ease}
+
+.q-card.card-correct {
+  border-color:#2c5a37}
+
+.q-card.card-wrong {
+  border-color:#5c2a2c}
+
+  .q-head {
+  display:flex;
+  gap:12px;
+  align-items:flex-start}
+
+.q-num {
+  flex:0 0 auto;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--panel-2);
+  border:1px solid var(--border);
+  color:var(--muted);
+  font-size:13px;
+  font-weight:700;
+  font-variant-numeric:tabular-nums}
+
+.q-text {
+  font-size:15.5px;
+  font-weight:600;
+  padding-top:1px}
+
+  .options {
+  display:grid;
+  gap:8px;
+  margin-top:14px}
+
+.opt {
+  display:flex;
+  gap:11px;
+  align-items:flex-start;
+  width:100%;
+  text-align:left;
+  background:var(--panel-2);
+  border:1px solid #2b3947;
+  color:var(--text);
+  padding:11px 14px;
+  border-radius:10px;
+  font-size:14.5px;
+  font-family:inherit;
+  line-height:1.45;
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease}
+
+.opt:hover:not(:disabled) {
+  border-color:var(--accent);
+  background:#22303c}
+
+.opt:disabled {
+  cursor:default}
+
+  .marker {
+  flex:0 0 auto;
+  position:relative;
+  width:18px;
+  height:18px;
+  margin-top:1px;
+  border-radius:50%;
+  border:2px solid #4a5b6b;
+  transition:border-color .15s ease}
+
+.opt.selected {
+  border-color:var(--accent);
+  background:#14312e}
+
+.opt.selected .marker {
+  border-color:var(--accent)}
+
+.opt.selected .marker:after {
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:50%;
+  background:var(--accent)}
+
+  .opt.correct {
+  border-color:var(--correct);
+  background:#12301c}
+
+.opt.correct .marker {
+  border-color:var(--correct)}
+
+.opt.correct .marker:after {
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:50%;
+  background:var(--correct)}
+
+.opt.wrong {
+  border-color:var(--wrong);
+  background:#3a1417}
+
+.opt.wrong .marker {
+  border-color:var(--wrong)}
+
+.opt.wrong .marker:after {
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:50%;
+  background:var(--wrong)}
+
+  .q-foot {
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  margin-top:12px}
+
+.hint-btn {
+  background:transparent;
+  border:1px solid #2b3947;
+  color:var(--muted);
+  padding:6px 14px;
+  border-radius:99px;
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+  transition:all .15s ease}
+
+.hint-btn:hover {
+  border-color:var(--hint);
+  color:var(--hint)}
+
+  .hint {
+  margin-top:10px;
+  padding:10px 14px;
+  background:#241f12;
+  border-left:3px solid var(--hint);
+  border-radius:8px;
+  font-size:14px;
+  color:#ffe9b0}
+
+.explain {
+  margin-top:10px;
+  padding:10px 14px;
+  border-radius:8px;
+  font-size:14px;
+  border-left:3px solid var(--border);
+  background:var(--panel-2)}
+
+.explain.good {
+  border-left-color:var(--correct);
+  background:#12301c;
+  color:#c9f3d3}
+
+.explain.bad {
+  border-left-color:var(--wrong);
+  background:#2b1214;
+  color:#ffd3d3}
+
+.explain strong {
+  font-weight:700}
+
+.explain em {
+  color:var(--muted);
+  font-style:normal;
+  font-size:13px}
+
+.hidden {
+  display:none!important}
+
+  .actions {
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:28px}
+
+.btn {
+  font-family:inherit;
+  font-size:15px;
+  font-weight:700;
+  padding:13px 30px;
+  border-radius:11px;
+  border:none;
+  cursor:pointer;
+  transition:transform .12s ease,filter .15s ease}
+
+.btn:active {
+  transform:translateY(1px)}
+
+.btn-primary {
+  background:var(--accent);
+  color:#06231f}
+
+.btn-primary:hover {
+  filter:brightness(1.1)}
+
+.btn-ghost {
+  background:transparent;
+  color:var(--text);
+  border:1px solid var(--border)}
+
+.btn-ghost:hover {
+  border-color:var(--accent);
+  color:var(--accent)}
+
+  .focus-note {
+  margin-top:14px;
+  padding:11px 13px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--muted);
+  font-size:13px;
+  background:#101720}
+
+  @media(max-width:520px) {
+  .brand {
+  font-size:14px}
+
+.q-text {
+  font-size:14.5px}
+
+.opt {
+  font-size:14px}
+
+.score-panel .big {
+  font-size:36px}
+
+main {
+  padding-left:12px;
+  padding-right:12px}
+
+}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand">Digestive System <span>· Essentials Quiz</span></div><div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div><div class="counter" id="counter">Not started</div></header>
+<main>
+  <div class="intro">
+    <h1>Adult nursing — Digestive system</h1>
+    <p>50 questions covering the key structures, functions and mechanisms in your corrected condensed notes.</p>
+    <p>Designed for first-year nursing: focus on understanding how the system works, not memorising every advanced detail. Use <strong style="color:var(--hint)">💡 Hint</strong> when needed, then finish to see your score and explanations.</p>
+    <div class="mode-chooser" id="modeChooser"><button id="startFullBtn" class="btn btn-primary" type="button">Full quiz · 50 questions</button><button id="startQuickBtn" class="btn btn-ghost" type="button">Quick quiz · 10 random</button></div>
+    <div id="modeStatus" class="mode-status hidden"><span id="modeLabel"></span><button id="changeModeBtn" class="link-btn" type="button">Change mode</button></div>
+    <div class="focus-note">Study tip: prioritise the route food takes, the jobs of each organ, the difference between blood and lymph absorption, and how bowel contents become faeces. Exact pH ranges, cranial-nerve numbers and minor biochemical intermediates are not tested here.</div>
+  </div>
+  <section id="scorePanel" class="score-panel hidden"></section><div id="quiz"></div>
+  <div id="actions" class="actions hidden"><button id="finishBtn" class="btn btn-primary" type="button">Finish &amp; see score</button><button id="resetBtn" class="btn btn-ghost hidden" type="button">Retake quiz</button></div>
+</main>
+<script>
+const questionPool = [
+  {
+    "q": "Which statement best describes the gastrointestinal (GI) tract?",
+    "options": [
+      "A group of separate organs with no continuous connection",
+      "A continuous tube extending from the mouth to the anus",
+      "A group of glands that release enzymes into the blood",
+      "A tube that carries food only as far as the stomach"
+    ],
+    "answer": 1,
+    "hint": "Think about the route a swallowed meal follows from entry to exit.",
+    "explain": "The GI tract is a continuous tube from the mouth to the anus. Food travels through its lumen; accessory organs help digestion but food does not pass through them."
+  },
+  {
+    "q": "Which of the following is an accessory digestive organ rather than part of the GI tube?",
+    "options": [
+      "Oesophagus",
+      "Stomach",
+      "Liver",
+      "Large intestine"
+    ],
+    "answer": 2,
+    "hint": "Distinguish organs food passes through from organs that assist digestion.",
+    "explain": "The liver is an accessory organ. It produces bile and processes absorbed nutrients, but food does not pass through it."
+  },
+  {
+    "q": "Which list gives the five main activities of digestion ?",
+    "options": [
+      "Ingestion, propulsion, digestion, absorption and elimination",
+      "Chewing, breathing, circulation, absorption and excretion",
+      "Ingestion, filtration, secretion, respiration and elimination",
+      "Propulsion, circulation, digestion, filtration and storage"
+    ],
+    "answer": 0,
+    "hint": "The activities describe taking food in, moving it, breaking it down, taking useful products up and removing what remains.",
+    "explain": "The five activities are ingestion, propulsion, digestion, absorption and elimination/defaecation."
+  },
+  {
+    "q": "What is the main difference between mechanical and chemical digestion?",
+    "options": [
+      "Mechanical digestion uses enzymes; chemical digestion uses muscles",
+      "Mechanical digestion physically breaks food up; chemical digestion breaks molecules down",
+      "Mechanical digestion occurs only in the stomach; chemical digestion only in the mouth",
+      "Mechanical digestion absorbs nutrients; chemical digestion eliminates waste"
+    ],
+    "answer": 1,
+    "hint": "One changes the size and mixing of food; the other changes the molecules.",
+    "explain": "Mechanical digestion physically reduces food into smaller pieces without changing its chemical composition. Chemical digestion uses enzymes and secretions to break large molecules into smaller absorbable products."
+  },
+  {
+    "q": "What does a digestive enzyme do?",
+    "options": [
+      "Speeds up a chemical reaction without being used up",
+      "Moves food along the GI tract by contracting",
+      "Absorbs nutrients directly into the bloodstream",
+      "Stores energy for later use"
+    ],
+    "answer": 0,
+    "hint": "Think of the role of a biological catalyst.",
+    "explain": "An enzyme is a biological catalyst. It speeds up a chemical reaction and can be used again after the products are released."
+  },
+  {
+    "q": "In the basic enzyme model, where does the substrate bind?",
+    "options": [
+      "At the enzyme's active site",
+      "Inside the nucleus of a cell",
+      "On the outer surface of a villus",
+      "Within the lumen of the stomach only"
+    ],
+    "answer": 0,
+    "hint": "The enzyme has a particular region that interacts with the molecule it acts on.",
+    "explain": "The substrate binds to the enzyme's active site, forming a temporary enzyme–substrate complex. Products are then released."
+  },
+  {
+    "q": "Which layer of the GI tract is the innermost lining and is involved in protection, secretion and absorption?",
+    "options": [
+      "Submucosa",
+      "Muscularis externa",
+      "Mucosa",
+      "Serosa or adventitia"
+    ],
+    "answer": 2,
+    "hint": "Start at the lumen—the space food passes through—and identify the lining immediately next to it.",
+    "explain": "The mucosa is the innermost layer. It includes epithelium, lamina propria and muscularis mucosae, and has roles in protection, secretion and absorption."
+  },
+  {
+    "q": "What is the main role of the muscularis externa?",
+    "options": [
+      "To produce bile",
+      "To mix and propel GI contents through muscle contractions",
+      "To absorb all nutrients into the blood",
+      "To form the outer protective lining of every GI organ"
+    ],
+    "answer": 1,
+    "hint": "Consider which wall layer contains the main smooth muscle responsible for movement.",
+    "explain": "The muscularis externa usually contains inner circular and outer longitudinal smooth muscle. Its contractions mix and propel contents."
+  },
+  {
+    "q": "Which statement about the peritoneum is correct?",
+    "options": [
+      "The parietal layer covers the organs and the visceral layer lines the body wall",
+      "It is a solid muscle layer that pushes food forward",
+      "The parietal layer lines the body wall and the visceral layer covers the organs",
+      "It is an open space normally filled with a large volume of fluid"
+    ],
+    "answer": 2,
+    "hint": "The names distinguish the layer against the body wall from the layer on the organs.",
+    "explain": "The parietal peritoneum lines the abdominal wall; the visceral peritoneum covers the organs. The potential space between them contains a small amount of lubricating fluid."
+  },
+  {
+    "q": "What is the main function of the tongue during eating?",
+    "options": [
+      "To produce hydrochloric acid",
+      "To manipulate food, mix it with saliva and help form and move a bolus",
+      "To absorb most dietary fat into lymph",
+      "To store bile between meals"
+    ],
+    "answer": 1,
+    "hint": "Think about how food is gathered and positioned before it is swallowed.",
+    "explain": "The tongue manipulates food, mixes it with saliva, forms a bolus and helps propel it backwards for swallowing. It also contributes to taste and speech."
+  },
+  {
+    "q": "Which teeth are mainly used to cut or bite food?",
+    "options": [
+      "Canines",
+      "Premolars",
+      "Molars",
+      "Incisors"
+    ],
+    "answer": 3,
+    "hint": "These are the front teeth used to bite into food.",
+    "explain": "Incisors are the front teeth used to cut or bite food. Canines pierce and tear, while premolars and molars crush and grind."
+  },
+  {
+    "q": "Which group contains the three major paired salivary glands?",
+    "options": [
+      "Parotid, submandibular and sublingual",
+      "Thyroid, parathyroid and adrenal",
+      "Pancreatic, gastric and intestinal",
+      "Lacrimal, pituitary and pineal"
+    ],
+    "answer": 0,
+    "hint": "All three are located around the mouth and deliver saliva through ducts.",
+    "explain": "The three major paired salivary glands are the parotid, submandibular and sublingual glands."
+  },
+  {
+    "q": "What is the main digestive role of salivary amylase?",
+    "options": [
+      "It begins starch digestion in the mouth",
+      "It begins protein digestion in the stomach",
+      "It emulsifies fats in the duodenum",
+      "It neutralises stomach acid in the pancreas"
+    ],
+    "answer": 0,
+    "hint": "This enzyme starts acting while food is being chewed.",
+    "explain": "Salivary amylase begins the digestion of starch (a carbohydrate) in the mouth. It is progressively inactivated as the swallowed bolus becomes acidic in the stomach."
+  },
+  {
+    "q": "Which phase of swallowing is normally under voluntary control?",
+    "options": [
+      "Pharyngeal phase",
+      "Oesophageal phase",
+      "Oral/buccal phase",
+      "Gastric phase"
+    ],
+    "answer": 2,
+    "hint": "It is the first stage, when the tongue pushes the prepared bolus backwards.",
+    "explain": "The oral/buccal phase is voluntary: the tongue forms and pushes the bolus into the oropharynx. The pharyngeal and oesophageal phases are involuntary."
+  },
+  {
+    "q": "During the pharyngeal phase of swallowing, what is an important part of airway protection?",
+    "options": [
+      "The stomach closes the pylorus",
+      "The soft palate elevates and coordinated laryngeal/vocal-fold movements help protect the airway",
+      "The lower oesophageal sphincter contracts to close the mouth",
+      "The small intestine absorbs the bolus"
+    ],
+    "answer": 1,
+    "hint": "Airway protection involves several coordinated movements, not a single flap acting alone.",
+    "explain": "The soft palate closes the nasopharynx and coordinated laryngeal and vocal-fold movements help protect the airway as the bolus is directed into the oesophagus. The epiglottis also moves, but is not the only protective mechanism."
+  },
+  {
+    "q": "What is peristalsis?",
+    "options": [
+      "Local mixing contractions that mainly occur in the small intestine",
+      "A coordinated wave of contraction behind and relaxation ahead of contents that moves them along",
+      "The chemical breakdown of fats by bile",
+      "The absorption of nutrients through villi"
+    ],
+    "answer": 1,
+    "hint": "Imagine a wave of squeezing that pushes the contents forward.",
+    "explain": "Peristalsis is a coordinated wave of contraction behind the bolus and relaxation ahead of it. It propels contents along the GI tract."
+  },
+  {
+    "q": "How does segmentation differ from peristalsis?",
+    "options": [
+      "Segmentation mainly mixes intestinal contents rather than propelling them forward",
+      "Segmentation is the voluntary first stage of swallowing",
+      "Segmentation is the release of bile from the gallbladder",
+      "Segmentation occurs only in the oesophagus and moves food into the stomach"
+    ],
+    "answer": 0,
+    "hint": "Think of local back-and-forth mixing rather than a travelling propulsive wave.",
+    "explain": "Segmentation consists of localised contractions, mainly in the small intestine. It mixes contents with digestive juices and brings them into contact with the absorptive lining."
+  },
+  {
+    "q": "What is the main role of the stomach?",
+    "options": [
+      "To absorb most nutrients from food",
+      "To store food temporarily, mix it with gastric juice and begin protein digestion",
+      "To produce bile and store glycogen",
+      "To absorb most long-chain fats into lacteals"
+    ],
+    "answer": 1,
+    "hint": "The stomach is an expandable muscular holding and mixing chamber; most nutrient absorption happens later.",
+    "explain": "The stomach temporarily stores food, churns and mixes it with gastric juice, and begins protein digestion. It is not the main site of nutrient absorption."
+  },
+  {
+    "q": "What is chyme?",
+    "options": [
+      "Chewed food mixed with saliva before swallowing",
+      "A semi-fluid mixture of food and gastric juice leaving the stomach",
+      "Bile stored in the gallbladder",
+      "Faeces stored in the rectum"
+    ],
+    "answer": 1,
+    "hint": "It is the mixture formed after food has been churned with stomach secretions.",
+    "explain": "Chyme is the semi-fluid mixture of food and gastric juice produced in the stomach. It passes gradually through the pylorus into the small intestine."
+  },
+  {
+    "q": "Which gastric cells produce hydrochloric acid and intrinsic factor?",
+    "options": [
+      "Chief cells",
+      "Parietal cells",
+      "Mucous cells",
+      "Goblet cells"
+    ],
+    "answer": 1,
+    "hint": "These cells have two key secretions: one supports the acidic environment and the other is needed for vitamin B12 absorption.",
+    "explain": "Parietal cells secrete hydrochloric acid and intrinsic factor. Intrinsic factor binds vitamin B12 and enables its absorption in the terminal ileum."
+  },
+  {
+    "q": "Which gastric cells release pepsinogen, the inactive precursor of pepsin?",
+    "options": [
+      "Chief cells",
+      "Parietal cells",
+      "Mucous cells",
+      "G cells"
+    ],
+    "answer": 0,
+    "hint": "The enzyme precursor is released by the cells associated with protein digestion.",
+    "explain": "Chief cells release pepsinogen. In the acidic stomach environment it is converted to pepsin, which begins protein digestion."
+  },
+  {
+    "q": "Why is mucus important in the stomach?",
+    "options": [
+      "It breaks starch into simple sugars",
+      "It protects and lubricates the stomach lining against acid and digestive enzymes",
+      "It activates insulin release from the pancreas",
+      "It carries absorbed fats into the lymph"
+    ],
+    "answer": 1,
+    "hint": "The stomach lining needs protection from the secretions it produces.",
+    "explain": "Mucus, with bicarbonate at the surface, helps protect and lubricate the gastric mucosa against acid and digestive enzymes."
+  },
+  {
+    "q": "What is the role of intrinsic factor?",
+    "options": [
+      "It enables vitamin B12 absorption in the terminal ileum",
+      "It emulsifies dietary fat in the duodenum",
+      "It neutralises acidic chyme in the stomach",
+      "It transports glucose from the villi to the liver"
+    ],
+    "answer": 0,
+    "hint": "This stomach secretion is essential for a vitamin to be absorbed at the end of the small intestine.",
+    "explain": "Intrinsic factor is produced by parietal cells. It binds vitamin B12, allowing the complex to be absorbed in the terminal ileum."
+  },
+  {
+    "q": "Which section of the small intestine receives acidic chyme, bile and pancreatic juice?",
+    "options": [
+      "Ileum",
+      "Jejunum",
+      "Duodenum",
+      "Caecum"
+    ],
+    "answer": 2,
+    "hint": "It is the first section immediately after the stomach.",
+    "explain": "The duodenum is the first and shortest section of the small intestine. It receives acidic chyme from the stomach, plus bile and pancreatic juice."
+  },
+  {
+    "q": "Which section of the small intestine is a major site of nutrient absorption?",
+    "options": [
+      "Duodenum",
+      "Jejunum",
+      "Rectum",
+      "Anal canal"
+    ],
+    "answer": 1,
+    "hint": "It is the middle section of the small intestine.",
+    "explain": "The jejunum is a major site of nutrient absorption. The ileum continues absorption and has a specific role in vitamin B12 and bile-salt absorption."
+  },
+  {
+    "q": "What is a key function of the terminal ileum?",
+    "options": [
+      "Absorbing the vitamin B12–intrinsic factor complex",
+      "Producing hydrochloric acid",
+      "Storing faeces before defaecation",
+      "Producing bile"
+    ],
+    "answer": 0,
+    "hint": "Think about the vitamin that needs a stomach-produced helper substance to be absorbed.",
+    "explain": "The terminal ileum absorbs the vitamin B12–intrinsic factor complex. The ileum also absorbs bile salts."
+  },
+  {
+    "q": "Why do villi and microvilli help the small intestine absorb nutrients?",
+    "options": [
+      "They reduce the distance food travels through the intestine",
+      "They greatly increase the surface area available for absorption",
+      "They prevent digestive enzymes from contacting food",
+      "They move faeces towards the rectum"
+    ],
+    "answer": 1,
+    "hint": "More surface area provides more opportunity for nutrients to cross the intestinal lining.",
+    "explain": "Villi and microvilli increase the small intestine's absorptive surface area. Microvilli also form the brush border, which contains enzymes that complete some digestion."
+  },
+  {
+    "q": "What is found inside an intestinal villus to take up absorbed substances?",
+    "options": [
+      "Only a large vein",
+      "Blood capillaries and a central lymphatic vessel called a lacteal",
+      "A gastric gland and a bile duct",
+      "A cartilage ring and smooth muscle valve"
+    ],
+    "answer": 1,
+    "hint": "A villus has routes for nutrients that enter blood and for many dietary lipids that enter lymph.",
+    "explain": "Each villus contains blood capillaries and a central lymphatic vessel called a lacteal. These provide different routes for absorbed nutrients."
+  },
+  {
+    "q": "Where do most absorbed amino acids and simple sugars travel first?",
+    "options": [
+      "Into lacteals and directly to the heart",
+      "Into villus blood capillaries and via the hepatic portal vein to the liver",
+      "Into the large intestine for storage",
+      "Into the gallbladder with bile"
+    ],
+    "answer": 1,
+    "hint": "Most water-soluble nutrients enter blood before reaching the liver.",
+    "explain": "Amino acids and monosaccharides enter blood capillaries in the villi and travel through the hepatic portal vein to the liver."
+  },
+  {
+    "q": "How do most long-chain dietary fats reach the bloodstream after absorption?",
+    "options": [
+      "They pass directly into the hepatic portal vein as free glucose",
+      "They are repackaged into chylomicrons, enter lacteals and travel through lymph",
+      "They are stored in the gallbladder and released later",
+      "They are converted to amino acids in the stomach"
+    ],
+    "answer": 1,
+    "hint": "Unlike most water-soluble nutrients, long-chain dietary lipids mainly use the lymphatic route initially.",
+    "explain": "Most long-chain dietary lipids are repackaged into chylomicrons in intestinal cells, enter the lacteals and travel through lymph before reaching the bloodstream."
+  },
+  {
+    "q": "Which statement best describes the liver's digestive role?",
+    "options": [
+      "It produces bile and processes, stores and redistributes absorbed nutrients",
+      "It stores bile but does not process nutrients",
+      "It produces digestive enzymes that are released directly into the stomach",
+      "It absorbs all nutrients directly from the intestinal lumen"
+    ],
+    "answer": 0,
+    "hint": "The liver receives nutrient-rich blood from the gut and has several metabolic and storage functions.",
+    "explain": "The liver produces bile, processes absorbed nutrients, stores glycogen and certain vitamins/minerals, and metabolises many drugs and toxins."
+  },
+  {
+    "q": "What is the hepatic portal vein's main role?",
+    "options": [
+      "To carry nutrient-rich blood from the GI tract to the liver",
+      "To carry bile from the liver to the gallbladder",
+      "To carry lymph from lacteals to the colon",
+      "To carry blood from the liver directly to the lungs"
+    ],
+    "answer": 0,
+    "hint": "It is the named blood route connecting the digestive organs with the liver.",
+    "explain": "The hepatic portal vein carries nutrient-rich venous blood from the gastrointestinal tract to the liver for processing."
+  },
+  {
+    "q": "What does it mean that the pancreas has both endocrine and exocrine functions?",
+    "options": [
+      "It releases hormones into blood and digestive juice through a duct into the duodenum",
+      "It releases all its products into the stomach only",
+      "It stores bile and releases it through a duct",
+      "It only produces hormones and has no digestive role"
+    ],
+    "answer": 0,
+    "hint": "One function acts through the bloodstream; the other delivers a secretion into the gut.",
+    "explain": "The endocrine pancreas (islets of Langerhans) releases hormones such as insulin and glucagon into blood. The exocrine pancreas releases pancreatic juice through ducts into the duodenum."
+  },
+  {
+    "q": "Which pancreatic hormones help regulate blood glucose?",
+    "options": [
+      "Pepsin and pepsinogen",
+      "Insulin and glucagon",
+      "Amylase and lipase",
+      "Bile salts and bilirubin"
+    ],
+    "answer": 1,
+    "hint": "One promotes lowering blood glucose; the other helps raise it.",
+    "explain": "Insulin helps lower blood glucose by promoting uptake and storage. Glucagon helps raise blood glucose by stimulating glucose release."
+  },
+  {
+    "q": "What does bicarbonate in pancreatic juice do?",
+    "options": [
+      "Makes the chyme more acidic",
+      "Neutralises acidic chyme entering the duodenum",
+      "Emulsifies fats into droplets",
+      "Breaks proteins directly into amino acids"
+    ],
+    "answer": 1,
+    "hint": "The stomach contents are acidic; the next section needs a more suitable environment for enzymes.",
+    "explain": "Pancreatic bicarbonate neutralises acidic chyme as it enters the duodenum, creating a more suitable environment for digestive enzyme activity."
+  },
+  {
+    "q": "Why are some pancreatic protein-digesting enzymes released as inactive precursors?",
+    "options": [
+      "To reduce the risk of the pancreas digesting its own tissue",
+      "To prevent them from ever working in the intestine",
+      "To help them emulsify fat in the gallbladder",
+      "To allow them to be absorbed intact into the bloodstream"
+    ],
+    "answer": 0,
+    "hint": "Consider the benefit of keeping powerful digestive enzymes inactive until they reach the intestine.",
+    "explain": "Pancreatic proteases are released as inactive precursors and activated in the duodenum. This helps reduce the risk of digestion of pancreatic tissue."
+  },
+  {
+    "q": "Where is bile produced?",
+    "options": [
+      "In the gallbladder",
+      "In the liver",
+      "In the pancreas",
+      "In the stomach"
+    ],
+    "answer": 1,
+    "hint": "The organ that makes bile is different from the small sac that stores it.",
+    "explain": "Bile is produced by the liver. The gallbladder stores and concentrates it between meals."
+  },
+  {
+    "q": "What is the main effect of bile salts on dietary fat?",
+    "options": [
+      "They digest fat by acting as enzymes",
+      "They emulsify large fat globules into smaller droplets, increasing surface area for lipase",
+      "They convert fats into glucose",
+      "They prevent pancreatic lipase from working"
+    ],
+    "answer": 1,
+    "hint": "Emulsification breaks large droplets into smaller ones; the enzyme then acts on the greater surface area.",
+    "explain": "Bile salts emulsify fats by dispersing large fat globules into smaller droplets. This increases the surface area available to pancreatic lipase. Bile is not an enzyme."
+  },
+  {
+    "q": "What is the gallbladder's main function?",
+    "options": [
+      "To make bile and release digestive enzymes",
+      "To store and concentrate bile made by the liver",
+      "To produce insulin and glucagon",
+      "To absorb vitamin B12"
+    ],
+    "answer": 1,
+    "hint": "Think of it as a storage and concentration organ for a secretion made elsewhere.",
+    "explain": "The gallbladder stores and concentrates bile produced by the liver, then releases it into the duodenum when required."
+  },
+  {
+    "q": "Which is a main function of the large intestine?",
+    "options": [
+      "Absorbing the majority of digested nutrients",
+      "Absorbing remaining water and electrolytes and compacting faeces",
+      "Producing intrinsic factor",
+      "Beginning starch digestion"
+    ],
+    "answer": 1,
+    "hint": "The small intestine absorbs most nutrients; the large intestine helps turn the remaining contents into stool.",
+    "explain": "The large intestine absorbs remaining water and electrolytes, compacts and stores faeces, and moves faecal material towards the rectum."
+  },
+  {
+    "q": "Which sequence gives the main sections of the colon in order?",
+    "options": [
+      "Descending, ascending, sigmoid, transverse",
+      "Ascending, transverse, descending, sigmoid",
+      "Sigmoid, transverse, ascending, descending",
+      "Transverse, sigmoid, ascending, descending"
+    ],
+    "answer": 1,
+    "hint": "The colon travels up, across, down and then curves towards the rectum.",
+    "explain": "The colon is divided into ascending, transverse, descending and sigmoid sections."
+  },
+  {
+    "q": "Why does material become more solid as it moves through the large intestine?",
+    "options": [
+      "More water is absorbed from it",
+      "Bile is converted into protein",
+      "It is mixed with saliva",
+      "All bacteria and fluid are removed immediately"
+    ],
+    "answer": 0,
+    "hint": "The consistency of stool is strongly affected by how much water remains in it.",
+    "explain": "As the large intestine absorbs water and electrolytes, the remaining contents become more solid and form faeces."
+  },
+  {
+    "q": "What can happen when intestinal contents move through the bowel too quickly?",
+    "options": [
+      "More time is available for water absorption, causing hard stool",
+      "Less time is available for water absorption, contributing to diarrhoea",
+      "The liver produces more intrinsic factor",
+      "The gallbladder stops storing bile permanently"
+    ],
+    "answer": 1,
+    "hint": "Transit time affects how long the bowel has to remove water from its contents.",
+    "explain": "Rapid intestinal transit leaves less time for water absorption and can contribute to loose stools or diarrhoea."
+  },
+  {
+    "q": "What can happen when intestinal transit is slow?",
+    "options": [
+      "Less water is absorbed and stool becomes watery",
+      "More water may be absorbed, contributing to hard stool and constipation",
+      "The stomach stops producing acid",
+      "Bile is converted into insulin"
+    ],
+    "answer": 1,
+    "hint": "Longer contact time can allow more water to be removed from the bowel contents.",
+    "explain": "Slow transit allows more water to be absorbed and can contribute to hard stools and constipation. These are simplified mechanisms; bowel symptoms can have multiple causes."
+  },
+  {
+    "q": "What is the role of the rectum?",
+    "options": [
+      "To produce pancreatic juice",
+      "To temporarily store faeces before defaecation",
+      "To absorb most dietary fats",
+      "To produce bile pigments"
+    ],
+    "answer": 1,
+    "hint": "It is the final storage area immediately before the anal canal.",
+    "explain": "The rectum stores faeces before defaecation. It continues into the anal canal and then the anus."
+  },
+  {
+    "q": "Which statement correctly compares the anal sphincters?",
+    "options": [
+      "Both are voluntary skeletal muscle",
+      "The internal sphincter is involuntary smooth muscle; the external sphincter is voluntary skeletal muscle",
+      "The internal sphincter is voluntary; the external sphincter is involuntary",
+      "Both are involuntary smooth muscle"
+    ],
+    "answer": 1,
+    "hint": "One is controlled automatically; the other can be consciously contracted.",
+    "explain": "The internal anal sphincter is smooth muscle and involuntary. The external anal sphincter is skeletal muscle and can be voluntarily contracted."
+  },
+  {
+    "q": "What is the Bristol Stool Chart used for?",
+    "options": [
+      "Measuring stomach acid production",
+      "Classifying stool form into seven types as part of bowel assessment",
+      "Measuring the amount of bile stored",
+      "Diagnosing a specific disease on its own"
+    ],
+    "answer": 1,
+    "hint": "It is a practical tool for describing stool consistency, but should be used with other assessment information.",
+    "explain": "The Bristol Stool Chart classifies stool form into seven types. It should be considered alongside frequency, amount, colour, symptoms and the person's usual bowel pattern."
+  },
+  {
+    "q": "A patient reports black, tarry stool. What is the safest response at a basic nursing-assessment level?",
+    "options": [
+      "Assume it is caused by food and take no action",
+      "Recognise it can indicate gastrointestinal bleeding and arrange urgent clinical assessment",
+      "Advise the patient to stop drinking water",
+      "Record it as a normal consequence of digestion"
+    ],
+    "answer": 1,
+    "hint": "Diet and iron can change stool colour, but dark or tarry stool can also be a warning sign.",
+    "explain": "Black or dark-red stool can indicate bleeding and should not automatically be attributed to diet. The notes advise urgent GP/NHS 111 assessment; heavy or ongoing bleeding is an emergency."
+  },
+  {
+    "q": "Which description best matches the contents of faeces?",
+    "options": [
+      "Only undigested food",
+      "Water, bacteria, undigested residues, salts, mucus, shed cells and other waste products",
+      "Only bile and digestive enzymes",
+      "Blood cells and oxygen"
+    ],
+    "answer": 1,
+    "hint": "Faeces contain more than food residue; consider the water, microbes and material shed from the gut lining.",
+    "explain": "Faeces contain water, bacteria, undigested food residues, salts, mucus, sloughed epithelial cells and other waste products."
+  },
+  {
+    "q": "What is GALT?",
+    "options": [
+      "A digestive enzyme released by the pancreas",
+      "Gut-associated lymphoid tissue involved in intestinal immune defence",
+      "A muscle layer in the oesophagus",
+      "A bile storage structure"
+    ],
+    "answer": 1,
+    "hint": "It is immune tissue associated with the intestine rather than a digestive secretion or muscle.",
+    "explain": "GALT means gut-associated lymphoid tissue. It includes structures such as lymphoid follicles and Peyer's patches and is important in mucosal immune activity."
+  }
+];
+const quizEl=document.getElementById('quiz'),counterEl=document.getElementById('counter'),barEl=document.getElementById('progressBar'),scoreEl=document.getElementById('scorePanel'),finishBtn=document.getElementById('finishBtn'),resetBtn=document.getElementById('resetBtn'),actionsEl=document.getElementById('actions'),modeChooser=document.getElementById('modeChooser'),modeStatus=document.getElementById('modeStatus'),modeLabel=document.getElementById('modeLabel'),changeModeBtn=document.getElementById('changeModeBtn');
+let activeQuestions=[],answers=[],mode=null,finished=false;
+function shuffle(arr){for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));
+[arr[i],arr[j]]=[arr[j],arr[i]];}return arr;}
+function startQuiz(newMode){mode=newMode;activeQuestions=mode==='full'?questionPool.slice():shuffle(questionPool.slice()).slice(0,10);
+answers=new Array(activeQuestions.length).fill(null);finished=false;
+scoreEl.classList.add('hidden');scoreEl.innerHTML='';finishBtn.classList.remove('hidden');
+resetBtn.classList.add('hidden');resetBtn.textContent=mode==='quick'?'Retake · 10 new random':'Retake quiz';
+modeChooser.classList.add('hidden');modeStatus.classList.remove('hidden');
+modeLabel.textContent=mode==='full'?'Full quiz · 50 questions':'Quick quiz · 10 random questions';
+actionsEl.classList.remove('hidden');render();window.scrollTo({top:0,behavior:'smooth'});
+}
+function showModeScreen(){activeQuestions=[];answers=[];finished=false;
+mode=null;quizEl.innerHTML='';scoreEl.classList.add('hidden');scoreEl.innerHTML='';
+modeChooser.classList.remove('hidden');modeStatus.classList.add('hidden');
+actionsEl.classList.add('hidden');counterEl.textContent='Not started';
+barEl.style.width='0%';window.scrollTo({top:0,behavior:'smooth'});
+}
+function render(){quizEl.innerHTML=activeQuestions.map((q,qi)=>`<article class="q-card" id="card-${qi}"><div class="q-head"><span class="q-num">${qi+1}</span><span class="q-text">${q.q}</span></div><div class="options" data-qi="${qi}">${q.options.map((opt,oi)=>`<button class="opt" data-oi="${oi}" type="button"><span class="marker"></span><span>${opt}</span></button>`).join('')}</div><div class="q-foot"><button class="hint-btn" type="button">💡 Hint</button></div><div class="hint hidden">${q.hint}</div><div class="explain hidden"></div></article>`).join('');
+updateProgress();}
+function updateProgress(){const total=activeQuestions.length;if(!total){counterEl.textContent='Not started';
+barEl.style.width='0%';return;}const answered=answers.filter(a=>a!==null).length;
+counterEl.textContent=`${answered} / ${total} answered`;barEl.style.width=(answered/total*100)+'%';
+}
+quizEl.addEventListener('click',e=>{const hintBtn=e.target.closest('.hint-btn');
+if(hintBtn){const card=hintBtn.closest('.q-card'),hint=card.querySelector('.hint'),showing=!hint.classList.contains('hidden');
+hint.classList.toggle('hidden',showing);hintBtn.textContent=showing?'💡 Hint':'🙈 Hide hint';
+return;}const opt=e.target.closest('.opt');if(opt&&!finished){const wrap=opt.parentElement,qi=Number(wrap.dataset.qi),oi=Number(opt.dataset.oi);
+answers[qi]=oi;[...wrap.children].forEach(b=>b.classList.remove('selected'));
+opt.classList.add('selected');updateProgress();}});
+function finishQuiz(){if(finished||!activeQuestions.length)return;
+finished=true;let score=0;activeQuestions.forEach((q,qi)=>{const card=document.getElementById('card-'+qi),chosen=answers[qi],opts=card.querySelectorAll('.opt'),isCorrect=chosen===q.answer;
+if(isCorrect)score++;opts.forEach((btn,oi)=>{btn.disabled=true;if(oi===q.answer)btn.classList.add('correct');
+if(oi===chosen&&!isCorrect)btn.classList.add('wrong');btn.classList.remove('selected');
+});const ex=card.querySelector('.explain');ex.classList.remove('hidden');
+ex.classList.add(isCorrect?'good':'bad');ex.innerHTML=`<strong>${isCorrect?'✅ Correct':'❌ Not quite'}</strong> — ${q.explain}`+(chosen===null?' <em>(You did not answer this one.)</em>':'');
+card.classList.add(isCorrect?'card-correct':'card-wrong');});const total=activeQuestions.length,pct=Math.round(score/total*100);
+let msg;if(pct>=90)msg='Excellent — you have a really solid grasp of the digestive system.';
+else if(pct>=75)msg='Good work — review the few details highlighted below.';
+else if(pct>=60)msg='A good start — use the explanations to strengthen the areas you missed.';
+else msg='Worth another pass through the notes, then have another go.';
+scoreEl.innerHTML=`<div class="big">${score} / ${total}</div><div class="pct">${pct}%</div><div class="msg">${msg}</div><div class="sub">Scroll down to review every question, with the correct answers and explanations shown.</div><div class="score-actions"><button id="retakeTopBtn" class="btn btn-primary" type="button">${mode==='quick'?'Retake · 10 new random':'Retake full quiz'}</button><button id="changeModeTopBtn" class="btn btn-ghost" type="button">Change mode</button></div>`;
+scoreEl.classList.remove('hidden');counterEl.textContent=`Score: ${score} / ${total}`;
+barEl.style.width='100%';finishBtn.classList.add('hidden');resetBtn.classList.remove('hidden');
+window.scrollTo({top:0,behavior:'smooth'});}
+finishBtn.addEventListener('click',finishQuiz);function resetQuiz(){startQuiz(mode);
+}resetBtn.addEventListener('click',resetQuiz);scoreEl.addEventListener('click',e=>{if(e.target.closest('#retakeTopBtn'))resetQuiz();
+if(e.target.closest('#changeModeTopBtn'))showModeScreen();});document.getElementById('startFullBtn').addEventListener('click',()=>startQuiz('full'));
+document.getElementById('startQuickBtn').addEventListener('click',()=>startQuiz('quick'));
+changeModeBtn.addEventListener('click',showModeScreen);showModeScreen();
+</script>
+</body>
+</html>
